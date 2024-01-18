@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Notes</string>
+    <string name="priority_icon">Priority icon</string>
+    <string name="add_button">Add button</string>
+    <string name="go_back">Go back</string>
+    <string name="options">Show options</string>
+    <string name="save_note">Save note</string>
+    <string name="title">Title</string>
+    <string name="content">Content</string>
+    <string name="low_priority">Low</string>
+    <string name="medium_priority">Medium</string>
+    <string name="high_priority">High</string>
+    <string name="none_priority">None</string>
+    <string name="unsaved_changes">Unsaved changes</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="create_a_note_and_it_will_show_up_here">Create a note and it will show up here.</string>
+    <string name="empty_list">Empty list</string>
+    <string name="minus">Minus</string>
+    <string name="plus">Plus</string>
+    <string name="high_priority_title">"High priority: "</string>
+    <string name="days">days</string>
+    <string name="set_interval_for_note_priority">Set notification reminder:</string>
+    <string name="select_category_color">Select category color:</string>
+    <string name="select_priority">Select priority:</string>
+    <string name="info">Info</string>
+</resources>
