@@ -154,7 +154,9 @@ fun DetailsScreen(
             }
         }
     )
+
 }
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
