@@ -34,10 +34,10 @@ class QuickNoteWidget : GlanceAppWidget() {
                 modifier = GlanceModifier
                     .background(Color.White)
                     .padding(16.dp)
-                    .clickable(actionRunCallback<OpenQuickNote>())
+                    .clickable(actionRunCallback<OpenNewNote>())
             ) {
                 Text(
-                    text = "Add\nnote"
+                    text = "New\nnote"
                 )
             }
         }
@@ -45,13 +45,12 @@ class QuickNoteWidget : GlanceAppWidget() {
 
 }
 
-class OpenQuickNote : ActionCallback {
+class OpenNewNote : ActionCallback {
     override suspend fun onAction(
         context: Context,
         glanceId: GlanceId,
         parameters: ActionParameters
     ) {
-
         // Launch the main activity of your app
         val intent = Intent(context, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
