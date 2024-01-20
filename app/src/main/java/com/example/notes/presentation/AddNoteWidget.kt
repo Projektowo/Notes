@@ -2,10 +2,13 @@ package com.example.notes.presentation
 
 import android.content.Context
 import android.content.Intent
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
+import androidx.glance.Image
+import androidx.glance.ImageProvider
 import androidx.glance.action.ActionParameters
 import androidx.glance.action.clickable
 import androidx.glance.appwidget.GlanceAppWidget
@@ -19,6 +22,7 @@ import androidx.glance.layout.padding
 import androidx.glance.state.GlanceStateDefinition
 import androidx.glance.state.PreferencesGlanceStateDefinition
 import androidx.glance.text.Text
+import com.example.notes.R
 
 class QuickNoteWidgetReceiver : GlanceAppWidgetReceiver() {
 
@@ -32,18 +36,20 @@ class QuickNoteWidget : GlanceAppWidget() {
         provideContent {
             Box(
                 modifier = GlanceModifier
-                    .background(Color.White)
+                    .background(Color.Black)
                     .padding(16.dp)
                     .clickable(actionRunCallback<OpenNewNote>())
             ) {
-                Text(
-                    text = "New\nnote"
+                Image(
+                    provider = ImageProvider(R.drawable.ic_launcher),
+                    contentDescription = "My image",
                 )
             }
         }
     }
 
 }
+
 
 class OpenNewNote : ActionCallback {
     override suspend fun onAction(
