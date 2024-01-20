@@ -47,6 +47,6 @@ fun AppGraph(navController: NavHostController) {
         val editor = sharedPref.edit()
         editor.remove("widgetParameter")
         editor.apply()
-        DetailsScreen(navController = navController,)
+        navController.navigate(Screens.DetailsScreen.route)
     }
 }
