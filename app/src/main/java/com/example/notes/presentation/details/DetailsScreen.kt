@@ -102,7 +102,7 @@ fun DetailsScreen(
         floatingActionButton = {
             if (viewState.hasChanges) {
                 FloatingActionButton(
-                    onClick = { viewModel.updateNote() }) {
+                    onClick = { viewModel.updateNote()}) {
                     Icon(
                         imageVector = Icons.Default.Check,
                         contentDescription = stringResource(R.string.add_button)
