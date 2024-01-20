@@ -51,6 +51,13 @@ class OpenNewNote : ActionCallback {
         glanceId: GlanceId,
         parameters: ActionParameters
     ) {
+        // Set a parameter value in shared preferences
+        val sharedPref = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            putString("widgetParameter", "your_widget_parameter_value")
+            apply()
+        }
+
         // Launch the main activity of your app
         val intent = Intent(context, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
