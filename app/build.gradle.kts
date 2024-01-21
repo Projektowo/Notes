@@ -73,6 +73,7 @@ dependencies {
     // hilt
     implementation("com.google.dagger:hilt-android:2.48.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+    implementation("androidx.hilt:hilt-work:1.0.0")
     kapt("com.google.dagger:hilt-android-compiler:2.48.1")
 
     // DataStore
@@ -82,5 +83,8 @@ dependencies {
     implementation("androidx.room:room-ktx:2.6.1")
     annotationProcessor("androidx.room:room-compiler:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
+
+    // WorkManager
+    implementation ("androidx.work:work-runtime-ktx:2.8.1")
 
 }
