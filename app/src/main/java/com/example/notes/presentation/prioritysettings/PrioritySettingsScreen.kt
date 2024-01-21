@@ -43,7 +43,8 @@ fun PrioritySettingsScreen(
         },
         content = {
             ScaffoldContent(
-                modifier = Modifier.padding(it),
+                modifier = Modifier.padding(it)
+                    .padding(horizontal = 16.dp),
                 viewState = viewState,
                 viewModel = viewModel
             )
@@ -92,7 +93,7 @@ fun ScaffoldContent(
         )
 
         ModifyInterval(
-            labelTitle = stringResource(R.string.high_priority_title),
+            labelTitle = stringResource(R.string.medium_priority_title),
             labelSubTitle = stringResource(R.string.days),
             currentInterval = viewState.priorityMediumDaysInterval,
             updateInterval = viewModel::updateMediumPriorityInterval
@@ -111,7 +112,7 @@ fun ModifyInterval(
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceEvenly
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
 
         Column {

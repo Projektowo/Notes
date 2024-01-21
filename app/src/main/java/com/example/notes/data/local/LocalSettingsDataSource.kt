@@ -14,8 +14,8 @@ class LocalSettingsDataSource @Inject constructor(
     private val context: Context
 ) {
 
-    fun observePriorityHighDaysInterval(): Flow<Int> = context.dataStore.data.map { preferences ->
-        preferences[PRIORITY_HIGH_DAYS_INTERVAL_KEY] ?: 1
+    fun observePriorityHighDaysInterval(): Flow<Int?> = context.dataStore.data.map { preferences ->
+        preferences[PRIORITY_HIGH_DAYS_INTERVAL_KEY]
     }
 
     suspend fun setPriorityHighDaysInterval(days: Int) {
@@ -24,8 +24,8 @@ class LocalSettingsDataSource @Inject constructor(
         }
     }
 
-    fun observePriorityMediumDaysInterval(): Flow<Int> = context.dataStore.data.map { preferences ->
-        preferences[PRIORITY_MEDIUM_DAYS_INTERVAL_KEY] ?: 3
+    fun observePriorityMediumDaysInterval(): Flow<Int?> = context.dataStore.data.map { preferences ->
+        preferences[PRIORITY_MEDIUM_DAYS_INTERVAL_KEY]
     }
 
     suspend fun setPriorityMediumDaysInterval(days: Int) {

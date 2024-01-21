@@ -19,6 +19,7 @@
     <string name="minus">Minus</string>
     <string name="plus">Plus</string>
     <string name="high_priority_title">"High priority: "</string>
+    <string name="medium_priority_title">"Medium priority: "</string>
     <string name="days">days</string>
     <string name="set_interval_for_note_priority">Set notification reminder:</string>
     <string name="select_category_color">Select category color:</string>
