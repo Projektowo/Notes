@@ -28,7 +28,6 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
     private val getNoteByIdUseCase: GetNoteByIdUseCase,
-    private val deleteNoteByIdUseCase: DeleteNoteByIdUseCase,
     private val insertNoteUseCase: InsertNoteUseCase,
     private val noteOnViewMapper: NoteOnViewMapper,
     private val updateNoteUseCase: UpdateNoteUseCase,
@@ -63,13 +62,6 @@ class DetailsViewModel @Inject constructor(
                     hasChanges = hasChanges()
                 )
             }
-        }
-    }
-
-    private fun insertNote() {
-        viewModelScope.launch(IO) {
-            insertNoteUseCase(note)
-
         }
     }
 
@@ -111,6 +103,13 @@ class DetailsViewModel @Inject constructor(
 
     fun getCategories(): List<Color> =
         DomainCategoryColorType.values().toList().map(categoryColorOnViewMapper::invoke)
+
+    private fun insertNote() {
+        viewModelScope.launch(IO) {
+            insertNoteUseCase(note)
+
+        }
+    }
 
     private fun getNote(noteId: Int) {
         viewModelScope.launch(IO) {

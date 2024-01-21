@@ -26,4 +26,5 @@
     <string name="select_priority">Select priority:</string>
     <string name="info">Info</string>
     <string name="widget_description">Add quick note</string>
+    <string name="delete">Delete</string>
 </resources>
