@@ -25,4 +25,5 @@
     <string name="select_category_color">Select category color:</string>
     <string name="select_priority">Select priority:</string>
     <string name="info">Info</string>
+    <string name="widget_description">Add quick note</string>
 </resources>

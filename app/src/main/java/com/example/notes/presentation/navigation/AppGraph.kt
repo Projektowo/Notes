@@ -1,6 +1,8 @@
 package com.example.notes.presentation.navigation
 
+import android.content.Context
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -34,5 +36,17 @@ fun AppGraph(navController: NavHostController) {
         ) {
             DetailsScreen(navController = navController,)
         }
+    }
+
+    // If you are in a Compose environment
+    val applicationContext = LocalContext.current
+    val sharedPref = applicationContext.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+    val widgetParameter = sharedPref.getString("widgetParameter", null)
+
+    if (widgetParameter != null) {
+        val editor = sharedPref.edit()
+        editor.remove("widgetParameter")
+        editor.apply()
+        navController.navigate(Screens.DetailsScreen.route)
     }
 }

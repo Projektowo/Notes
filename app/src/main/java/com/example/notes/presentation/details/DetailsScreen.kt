@@ -54,7 +54,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.notes.R
 import com.example.notes.presentation.model.PriorityOnView
 import com.example.notes.presentation.navigation.Screens
@@ -63,7 +63,7 @@ import com.example.notes.presentation.util.clickableNoRipple
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailsScreen(
-    viewModel: DetailsViewModel = hiltViewModel(), navController: NavController,
+    viewModel: DetailsViewModel = hiltViewModel(), navController: NavHostController,
 ) {
     val viewState = viewModel.viewState
     var showSheet by remember { mutableStateOf(false) }
@@ -102,7 +102,7 @@ fun DetailsScreen(
         floatingActionButton = {
             if (viewState.hasChanges) {
                 FloatingActionButton(
-                    onClick = { viewModel.updateNote() }) {
+                    onClick = { viewModel.updateNote()}) {
                     Icon(
                         imageVector = Icons.Default.Check,
                         contentDescription = stringResource(R.string.add_button)
@@ -154,7 +154,9 @@ fun DetailsScreen(
             }
         }
     )
+
 }
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
