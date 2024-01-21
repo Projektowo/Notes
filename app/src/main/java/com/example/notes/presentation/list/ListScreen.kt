@@ -1,7 +1,8 @@
 package com.example.notes.presentation.list
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,6 +19,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Card
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -25,6 +28,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -74,7 +81,8 @@ fun ListScreen(
                             note = item,
                             onItemClick = {
                                 navController.navigate(Screens.DetailsScreen.routeWithId(it))
-                            }
+                            },
+                            onDeleteNote = viewModel::deleteNote
                         )
                     }
                 }
@@ -110,20 +118,37 @@ fun EmptyNotes() {
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun NoteItem(
     modifier: Modifier = Modifier,
     note: NoteOnView,
-    onItemClick: (id: Int) -> Unit
+    onItemClick: (id: Int) -> Unit,
+    onDeleteNote: (id: Int) -> Unit
 ) {
+    var isOptionsShown by remember { mutableStateOf(false) }
+
     Card(
         modifier = modifier
             .padding(8.dp)
-            .clickable {
-                onItemClick(note.id)
-            },
+            .combinedClickable(
+                onClick = { onItemClick(note.id) },
+                onLongClick = { isOptionsShown = true },
+            ),
         shape = RoundedCornerShape(8.dp)
     ) {
+        DropdownMenu(
+            expanded = isOptionsShown,
+            onDismissRequest = { isOptionsShown = false }
+        ) {
+            DropdownMenuItem(
+                text = { Text(stringResource(R.string.delete)) },
+                onClick = {
+                    onDeleteNote(note.id)
+                    isOptionsShown = false
+                }
+            )
+        }
 
         Column(modifier = Modifier.padding(12.dp)) {
 

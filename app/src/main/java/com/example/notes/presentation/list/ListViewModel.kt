@@ -1,6 +1,5 @@
 package com.example.notes.presentation.list
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -8,8 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.notes.domain.model.DomainNotePriorityType
 import com.example.notes.domain.usecase.DeleteNoteByIdUseCase
-import com.example.notes.domain.usecase.GetNoteByIdUseCase
-import com.example.notes.domain.usecase.InsertNoteUseCase
 import com.example.notes.domain.usecase.ObserveNotesUseCase
 import com.example.notes.domain.usecase.ObservePriorityHighDaysInterval
 import com.example.notes.domain.usecase.ObservePriorityMediumDaysInterval
@@ -26,13 +23,11 @@ import javax.inject.Inject
 @HiltViewModel
 class ListViewModel @Inject constructor(
     private val observeNotesUseCase: ObserveNotesUseCase,
-    private val getNoteByIdUseCase: GetNoteByIdUseCase,
     private val deleteNoteByIdUseCase: DeleteNoteByIdUseCase,
     private val observePriorityHighDaysInterval: ObservePriorityHighDaysInterval,
     private val observePriorityMediumDaysInterval: ObservePriorityMediumDaysInterval,
-    private val insertNoteUseCase: InsertNoteUseCase,
     private val noteOnViewMapper: NoteOnViewMapper,
-    private var workerStarter: WorkerStarter
+    private val workerStarter: WorkerStarter
 ) : ViewModel() {
 
     var viewState by mutableStateOf(ListViewState())
@@ -54,6 +49,12 @@ class ListViewModel @Inject constructor(
         viewModelScope.launch(IO) {
             val highPriorityInterval = observePriorityMediumDaysInterval().first()
             workerStarter.initReminder(highPriorityInterval, DomainNotePriorityType.MEDIUM)
+        }
+    }
+
+    fun deleteNote(noteId: Int) {
+        viewModelScope.launch(IO) {
+            deleteNoteByIdUseCase(noteId)
         }
     }
 }
